@@ -3,13 +3,12 @@ let express = require('express');
 var app = express()
 var LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./scratch');
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.set('view engine', 'ejs');
 
 var users = {
-  'paco':'noni',
-  'oscar':'noni',
+  'Oscar':'Alonso',
+  'Prueba2':'prueba2',
 }
 
 app.get('/login', function (req, res){
@@ -17,9 +16,15 @@ app.get('/login', function (req, res){
 });
 
 app.post('/login', function (req, res){
+  //var inputUser = "";
+  //var inputPass = "";
+  var user = "";
+  //var password = "";
   var inputUser = req.body.username;
   var inputPass = req.body.password;
-  var user = "";
+
+  
+  
   if (localStorage.getItem(inputUser) == inputPass) {
         user = inputUser;
   }
@@ -33,6 +38,8 @@ app.get('/register', function (req, res){
 });
 
 app.post('/register', function (req, res){
+  //var inputUser = "";
+  //var inputPass = "";
   var inputUser = req.body.username;
   var inputPass = req.body.password;
   localStorage.setItem(inputUser, inputPass);
